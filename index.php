@@ -138,7 +138,7 @@
 <IFRAME style="display:none" name="hidden-form"></IFRAME> 
 <IFRAME style="display:none" name="hidden-form2"></IFRAME> 
 			<p id="license"></p>
-			<p id="supportcomments"><br><INPUT class="btn btn-info" TYPE='button' href='https://github.com/kumpeapps/UVT_PHP/issues' value='Suggestions/Support'></p>
+			<p id="supportcomments"><br>For Support or Suggestions (or to help improve this code) view goto https://github.com/kumpeapps/UVT_PHP and raise an issue or submit a pull request.</p>
 			
 		</p>
 		</div>
