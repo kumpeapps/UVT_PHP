@@ -3,7 +3,7 @@ name: run_updateRepo
 on:
   push:
     push:
-    branches: [ "Pre-Prod" ]
+    branches: [ "PreProd" ]
 
 jobs:
   build:
