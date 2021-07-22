@@ -410,7 +410,7 @@ function detectIntranet() {
 	var button = "<INPUT TYPE='button' onClick='GiveIPvar()' value='Next' class='btn btn-outline-success' >";
 	window.back2 = "GiveIP";
 	var backbutton = "<INPUT TYPE='button' onClick='" + back1 + "()' value='Back' class='btn btn-outline-dark' >";
-	var body = "<p>Enter your start IP address and block size then click Next</p><p>Start IP: <input id='o1' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o2' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o3' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o4' type='number' size='3' maxlength='3' min='1' max='254' required/></p><p>Block Size: <select  class='selectpicker' data-style='form-control btn-success' id='Block'><option value='8'>8</option><option value='16'>16</option></select></p><br><br>" + button;
+	var body = "<p>Enter your start IP address and block size then click Next</p><p>Start IP: <input id='o1' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o2' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o3' type='number' size='3' maxlength='3' min='1' max='254' required/>.<input id='o4' type='number' size='3' maxlength='3' min='1' max='254' required/></p><p>Block Size: <select  class='selectpicker' data-style='form-control btn-success' id='Block'><option value='8'>8</option><option value='16'>16</option><option value='32'>32</option><option value='64'>64</option></select></p><br><br>" + button;
 	document.getElementById("backbutton").innerHTML = backbutton;
 	document.getElementById("body").innerHTML = body;
 	document.getElementById("body2").innerHTML = "";
@@ -461,6 +461,12 @@ function detectIntranet() {
 	IdentifyIPs();
 } else if (blocksize == "16") { 
 	window.maskend = "240";
+	IdentifyIPs();
+} else if (blocksize == "32") { 
+	window.maskend = "224";
+	IdentifyIPs();
+} else if (blocksize == "64") { 
+	window.maskend = "192";
 	IdentifyIPs();
 } else {
 	window.maskend = "error";
@@ -668,7 +674,7 @@ if (license === "auth-app-store") {
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer">
-            © 2018 Justin Kumpe
+            © 2021 Justin Kumpe
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
