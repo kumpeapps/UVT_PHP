@@ -1,5 +1,7 @@
 # UVT (Web Version)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbf45b38dab4bfebd055006ce8c574a)](https://app.codacy.com/gh/kumpeapps/UVT_PHP?utm_source=github.com&utm_medium=referral&utm_content=kumpeapps/UVT_PHP&utm_campaign=Badge_Grade_Settings)
+
 [UVT](https://uvt.kumpeapps.com) was designed by a Uverse Technician to assist Uverse Technicians in simple tasks that the techs may not deal with on a daily basis like configuring an RG/IG for Static IP Addresses.
 UVT is accessible at [https://uvt.kumpeapps.com](https://uvt.kumpeapps.com)
 
