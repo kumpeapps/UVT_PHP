@@ -128,7 +128,7 @@
 		</div>
 		<div align="center">
 			<p id="alert"></p>
-			<p id="body">Please wait while the data is loaded and license is verified.<br>This should only take a few seconds.  If it takes longer please use the comments form or email support@justinkumpe.net to report the error.</p>
+			<p id="body">Please wait while the data is loaded and license is verified.<br>This should only take a few seconds.  If it takes longer please use the comments form or email helpdesk+uvt@kumpeapps.com to report the error.</p>
 			<p id="body2"></p>
 			<p id="bottom"></p>
 			<br>
@@ -138,7 +138,7 @@
 <IFRAME style="display:none" name="hidden-form"></IFRAME> 
 <IFRAME style="display:none" name="hidden-form2"></IFRAME> 
 			<p id="license"></p>
-			<p id="supportcomments"><br><INPUT class="btn btn-info" TYPE='button' onClick='Comments()' value='Comments/Support'></p>
+			<p id="supportcomments"><br>For Support or Suggestions (or to help improve this code) view goto https://github.com/kumpeapps/UVT_PHP and raise an issue or submit a pull request.</p>
 			
 		</p>
 		</div>
@@ -156,7 +156,7 @@ window.onload = function () {
 	window.supportdevice = "6"
 	window.device = getUrlVars()["device"];
 	window.license = getUrlVars()["license"];
-	window.version = "10.1";
+	window.version = "11";
 	window.crtblock = "";
 	deviceLicense();
 	}
@@ -182,40 +182,12 @@ function checkLicense() {
 }
 	<!-- End Check For User Licensing -->
 	
-	<!-- Start Network Detection (Detects if user is on AT&Ts internal network) -->
 	
-	<!-- Enables Licensing for AT&T -->
-	var detectionCounter = 0;
-	var detectionTimeOut = 5;
-	var detectionImage = 'https://webphone.att.com/favicon.ico';
-	var detectionElement = document.createElement('img');
-	detectionElement.src = detectionImage;
+// Outdated Function. No longer requires intranet detection.
 function detectIntranet() {
-    detectionCounter = detectionCounter + 1;
-    //  alert('Attempt ' + detectionCounter + ': Sniffing intranet connection by loading an internal resource at ' + detectionImage);
-    if (detectionElement.complete) {
-        if (detectionElement.width > 0 && detectionElement.height > 0) {
-            //      alert('Attempt ' + detectionCounter + ': The intranet resource was loaded!');
-           window.auth = "att";
-           window.crtblock = "yes";
-           window.userlicense = "-AT&T (Internal/VPN Connection)";
-           document.getElementById("license").innerHTML = userlicense + devicelicense;
-           checkSectionLicense();
-        } else {
-            //      alert('Attempt ' + detectionCounter + ': The intranet resource could not be loaded!');
-            window.auth = "public";
-            document.getElementById("license").innerHTML = userlicense + devicelicense;
-            checkSectionLicense();
-        }
-    } else {
-        if (detectionCounter < detectionTimeOut) {
-            setTimeout("detectIntranet()", 1000);
-            //      alert('Attempt ' + detectionCounter + ': Still trying to load: ' + detectionImage);
-        } else {
-            alert('Attempt ' + detectionCounter + ': Gave up trying to load: ' + detectionImage);
-            //	  GiveIP();
-        }
-    }
+    window.auth = "public";
+    document.getElementById("license").innerHTML = userlicense + devicelicense;
+    checkSectionLicense();
 }
 	<!-- End Network Detection -->
 	
@@ -296,14 +268,9 @@ function detectIntranet() {
     document.getElementById("title").innerHTML = "UVT- Uverse RG Static IP Trainer V" + version;
     document.getElementById("body2").innerHTML = "";
 	
-<!-- Check License Authorization -->
-	if (auth == "att") {
-	window.back1 = "main";
-	main();
-} else {
+
 	window.back1 = "JKUVT";
 	GiveIP();
-}
 }
 <!-- End Check License Authorization -->
 	
@@ -327,86 +294,9 @@ function detectIntranet() {
 	
 	}
 	
-	function GetIP1()
-{
-	var button = "<INPUT TYPE='button' onClick='GetIP2()' value='Next' class='btn btn-outline-success' >";
-	var photo = "<img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'>";
-	var backbutton = "<INPUT TYPE='button' onClick='main()' value='Back' class='btn btn-outline-dark' >";
-	var body = "1. Goto BBNMS (http://bbnms-ls.it.att.com/premtech/premtech/PremTech.html)<br>2. Click On Technician Tools<br>" + photo + "<br>" + button;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("Photo").src = "Photos/BBNMS-1.jpg";
-	document.getElementById("button").innerHTML = button;
-	var backbutton = "<INPUT TYPE='button' onClick='checkLicense()' value='Back' class='btn btn-outline-dark' >";
-	document.getElementById("backbutton").innerHTML = backbutton;
+
 	
-	}
-	
-	function GetIP2()
-{
-	var photo = "<img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'>";
-	var backbutton = "<INPUT TYPE='button' onClick='GetIP1()' value='Back' class='btn btn-outline-dark' >";
-	var button = "<INPUT TYPE='button' onClick='GetIP3()' value='Next' class='btn btn-outline-success' >";
-	var body = "3. Enter BAN<br>4. Click BANs<br>" + photo + "<br>" + button;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("Photo").src = "Photos/BBNMS-2.jpg";
-	document.getElementById("button").innerHTML = button;
-	
-	}
-	
-	function GetIP3()
-{
-	var photo = "<img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'>";
-	var backbutton = "<INPUT TYPE='button' onClick='GetIP2()' value='Back' class='btn btn-outline-dark' >";
-	var button = "<INPUT TYPE='button' onClick='GetIP4()' value='Next' class='btn btn-outline-success' >";
-	var body = "4. Click Customers<br>5. Click View Subscriptions<br>" + photo + "<br>" + button;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("Photo").src = "Photos/BBNMS-3.jpg";
-	document.getElementById("button").innerHTML = button;
-	
-	
-	}
-	
-	function GetIP4()
-{
-	var photo = "<img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'>";
-	window.back2 = "GetIP4";
-	var backbutton = "<INPUT TYPE='button' onClick='GetIP3()' value='Back' class='btn btn-outline-dark' >";
-	var button = "<INPUT TYPE='button' onClick='GetIP5()' value='Next' class='btn btn-outline-success' >";
-	var body = "6. Click On Customer<br>7. Scroll Down to HSIA<br>8. Your IP Info is in the 'IP Net Block' field<br><br> What Does Your IP Net Block Show? <br><input id='o1' type='number' size='3' maxlength='3' min='1' max='254'/>.<input id='o2' type='number' size='3' maxlength='3' min='1' max='254'/>.<input id='o3' type='number' size='3' maxlength='3' min='1' max='254'/>.<input id='o4' type='number' size='3' maxlength='3' min='1' max='254'/> / <select class='selectpicker' data-style='form-control btn-success' name='NetBlock' id='NetBlock'><option value='8'>29</option><option value='16'>28</option></select><br><p id='body2'</p><br>" + photo + "<br>" + button;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body2").innerHTML = "";
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("Photo").src = "Photos/BBNMS-4.jpg";
-	document.getElementById("button").innerHTML = button;
-	document.getElementById("body2").innerHTML = "";
-	
-	}
-	
-	function GetIP5()
-{
-	var photo = "<img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'>";
-	window.back2 = "GetIP4";
-	var backbutton = "<INPUT TYPE='button' onClick='GetIP4()' value='Back' class='btn btn-outline-dark' >";
-	window.o1 = document.getElementById('o1').value;
-	window.o2 = document.getElementById('o2').value;
-	window.o3 = document.getElementById('o3').value;
-	window.o4 = document.getElementById('o4').value;
-	var startip = o1 + "." + o2 + "." + o3 + "." + o4;
-	var NetBlock = document.getElementById("NetBlock");
-	window.blocksize = NetBlock.options[NetBlock.selectedIndex].value;
-	var button = "<INPUT TYPE='button' onClick='Identify()' value='Next' class='btn btn-outline-success' >";
-	var body2 = "<br>Your Start IP Address is " + startip + " and your block size is " + blocksize + "<br> Click Next to Continue <br>" + button;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body2").innerHTML = body2;
-	document.getElementById("button").innerHTML = button;
-	
-	}
-	
-	function GiveIP()
-{
+	function GiveIP() {
 	var button = "<INPUT TYPE='button' onClick='GiveIPvar()' value='Next' class='btn btn-outline-success' >";
 	window.back2 = "GiveIP";
 	var backbutton = "<INPUT TYPE='button' onClick='" + back1 + "()' value='Back' class='btn btn-outline-dark' >";
@@ -419,8 +309,7 @@ function detectIntranet() {
 	
 	}
 	
-	function GiveIPvar()
-{
+	function GiveIPvar() {
 	window.o1 = document.getElementById('o1').value;
 	window.o2 = document.getElementById('o2').value;
 	window.o3 = document.getElementById('o3').value;
@@ -432,8 +321,7 @@ function detectIntranet() {
 	
 	}
 	
-	function PrePop()
-{
+	function PrePop() {
 	window.o1 = getUrlVars()["o1"];
 	window.o2 = getUrlVars()["o2"];
 	window.o3 = getUrlVars()["o3"];
@@ -448,53 +336,44 @@ function detectIntranet() {
 	
 	}
 	
-	function Identify()
-{
-	if (o1 == "7443") { 
-	CRT();
-} else if (o1 == "3288") { 
-	MDM();
-} else if (o1 == "2980") { 
-	CRT();
-} else if (blocksize == "8") { 
-	window.maskend = "248";
-	IdentifyIPs();
-} else if (blocksize == "16") { 
-	window.maskend = "240";
-	IdentifyIPs();
-} else if (blocksize == "32") { 
-	window.maskend = "224";
-	IdentifyIPs();
-} else if (blocksize == "64") { 
-	window.maskend = "192";
-	IdentifyIPs();
-} else {
-	window.maskend = "error";
-	IdentifyIPs();
+	function Identify() {
+		if (blocksize == "8") { 
+			window.maskend = "248";
+			IdentifyIPs();
+		} else if (blocksize == "16") { 
+			window.maskend = "240";
+			IdentifyIPs();
+		} else if (blocksize == "32") { 
+			window.maskend = "224";
+			IdentifyIPs();
+		} else if (blocksize == "64") { 
+			window.maskend = "192";
+			IdentifyIPs();
+		} else {
+			window.maskend = "error";
+			IdentifyIPs();
+		}
 	}
-}
 
-	function IdentifyIPs()
-{
-	window.mask = "255.255.255." + maskend;
-	var backbutton2 = "<INPUT TYPE='button' onClick='" + back2 + "()' value='Back' class='btn btn-outline-dark' >" ;
-	var IP = o1 + "." + o2 + "." + o3 + ".";
-	var fuadd = "1";
-	var fuo4 = +o4 + +fuadd;
-	var lusub = "3";
-	var luo4 = +o4 + +blocksize - +lusub;
-	var rsub = "2";
-	var ro4 = +o4 + +blocksize - +rsub;
-	window.fu = IP + fuo4;
-	window.lu = IP + luo4;
-	window.router = IP + ro4;
-	var button = "<!--<INPUT TYPE='button' onClick='promalert()' value='Email Instructions'>--><br><INPUT TYPE='button' onClick='SelectRG()' value='Next' class='btn btn-outline-success' >";
-	document.getElementById("backbutton").innerHTML = backbutton2;
-	var body = ""
-	var body2 = "Below is your Static IP information.  Please write this down and give it to the customer.<br><br>First Useable IP: <b>" + fu + "</b><br>Last Useable IP: <b>" + lu + "</b><br>Router/Default Gateway: <b>" + router + "</b><br>Subnet Mask: <b>" + mask + "</b><br>Primary DNS: <b>68.94.156.1</b><br>Secondary DNS: <b>68.94.157.1</b><br><br> After giving this information to the customer please click next to continue with the instructions. <br><br>" + button;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("body2").innerHTML = body2;
-	
+	function IdentifyIPs() {
+		window.mask = "255.255.255." + maskend;
+		var backbutton2 = "<INPUT TYPE='button' onClick='" + back2 + "()' value='Back' class='btn btn-outline-dark' >" ;
+		var IP = o1 + "." + o2 + "." + o3 + ".";
+		var fuadd = "1";
+		var fuo4 = +o4 + +fuadd;
+		var lusub = "3";
+		var luo4 = +o4 + +blocksize - +lusub;
+		var rsub = "2";
+		var ro4 = +o4 + +blocksize - +rsub;
+		window.fu = IP + fuo4;
+		window.lu = IP + luo4;
+		window.router = IP + ro4;
+		var button = "<!--<INPUT TYPE='button' onClick='promalert()' value='Email Instructions'>--><br><INPUT TYPE='button' onClick='SelectRG()' value='Next' class='btn btn-outline-success' >";
+		document.getElementById("backbutton").innerHTML = backbutton2;
+		var body = ""
+		var body2 = "Below is your Static IP information.  Please write this down and give it to the customer.<br><br>First Useable IP: <b>" + fu + "</b><br>Last Useable IP: <b>" + lu + "</b><br>Router/Default Gateway: <b>" + router + "</b><br>Subnet Mask: <b>" + mask + "</b><br>Primary DNS: <b>68.94.156.1</b><br>Secondary DNS: <b>68.94.157.1</b><br><br> After giving this information to the customer please click next to continue with the instructions. <br><br>" + button;
+		document.getElementById("body").innerHTML = body;
+		document.getElementById("body2").innerHTML = body2;
 	}
 	
 function promalert(){
@@ -520,99 +399,78 @@ function promalert(){
         swal("Email Sent!", "You entered following email: " + inputValue, "success"); });
 }
 	
-	function SelectRG()
-{
-	var button = "<INPUT TYPE='button' onClick='RGVar()' value='Next' class='btn btn-outline-success' >";
-	var backbutton = "<INPUT TYPE='button' onClick='IdentifyIPs()' value='Back' class='btn btn-outline-dark' >";
-	var body = "<p>Select Your RG: <select id='RG'><option value='ARRIS'>BGW210</option><option value='Pace'>5268AC</option><option value='ARRIS'>NVG-510</option><option value='ARRIS'>589</option><option value='ARRIS'>599</option><option value='Pace'>5031</option><option value='Pace'>3801</option></select></p><br><br>" + button;
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("body2").innerHTML = "";
-	document.getElementById("button").innerHTML = button;
-	
+	function SelectRG() {
+		var button = "<INPUT TYPE='button' onClick='RGVar()' value='Next' class='btn btn-outline-success' >";
+		var backbutton = "<INPUT TYPE='button' onClick='IdentifyIPs()' value='Back' class='btn btn-outline-dark' >";
+		var body = "<p>Select Your RG: <select id='RG'><option value='ARRIS'>BGW210</option><option value='Pace'>5268AC</option><option value='ARRIS'>NVG-510</option><option value='ARRIS'>589</option><option value='ARRIS'>599</option><option value='Pace'>5031</option><option value='Pace'>3801</option></select></p><br><br>" + button;
+		document.getElementById("backbutton").innerHTML = backbutton;
+		document.getElementById("body").innerHTML = body;
+		document.getElementById("body2").innerHTML = "";
+		document.getElementById("button").innerHTML = button;
 	}
 	
-	function RGVar()
-{
-	var GetRG = document.getElementById("RG");
-	var backbutton = "<INPUT TYPE='button' onClick='IdentifyIPs()' value='Back' class='btn btn-outline-dark' >";
-	window.rg = GetRG.options[GetRG.selectedIndex].text;
-	window.man = GetRG.options[GetRG.selectedIndex].value;
-	Config1()
-	
+	function RGVar() {
+		var GetRG = document.getElementById("RG");
+		var backbutton = "<INPUT TYPE='button' onClick='IdentifyIPs()' value='Back' class='btn btn-outline-dark' >";
+		window.rg = GetRG.options[GetRG.selectedIndex].text;
+		window.man = GetRG.options[GetRG.selectedIndex].value;
+		Config1()
 	}
 	
-	function Config1()
-{
-	var button = "<INPUT TYPE='button' onClick='Config2()' value='Next' class='btn btn-outline-success' >";
-	var backbutton = "<INPUT TYPE='button' onClick='SelectRG()' value='Back' class='btn btn-outline-dark' >";
-	var GetPhoto = "Photos/" + auth + "-" + rg + "-1.jpg";
+	function Config1() {
+		var button = "<INPUT TYPE='button' onClick='Config2()' value='Next' class='btn btn-outline-success' >";
+		var backbutton = "<INPUT TYPE='button' onClick='SelectRG()' value='Back' class='btn btn-outline-dark' >";
+		var GetPhoto = "Photos/" + auth + "-" + rg + "-1.jpg";
 		if (man == "Pace") { 
-	var instructions2 = "<p>2. Click Settings</p><p>3. Click Broadband</p><p>4. Click Link Configuration</p>";
-} else if (man == "ARRIS") { 
-	var instructions2 = "<p>2. Click Home Network</p><p>3. Click Subnets & DHCP</p>";
-} else {
-	var instructions2 = "error";
-}
-	var body = "<p>1. Goto the RG Configuration Page <b>(192.168.1.254)</b></p>" + instructions2 + "<p></p><p><img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'></p><br><p id='button'></p>"
-	document.getElementById("backbutton").innerHTML = backbutton;
-	document.getElementById("body").innerHTML = body;
-	document.getElementById("Photo").src = GetPhoto;
-	document.getElementById("button").innerHTML = button;
-	
+			var instructions2 = "<p>2. Click Settings</p><p>3. Click Broadband</p><p>4. Click Link Configuration</p>";
+		} else if (man == "ARRIS") { 
+			var instructions2 = "<p>2. Click Home Network</p><p>3. Click Subnets & DHCP</p>";
+		} else {
+			var instructions2 = "error";
+		}
+		var body = "<p>1. Goto the RG Configuration Page <b>(192.168.1.254)</b></p>" + instructions2 + "<p></p><p><img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'></p><br><p id='button'></p>"
+		document.getElementById("backbutton").innerHTML = backbutton;
+		document.getElementById("body").innerHTML = body;
+		document.getElementById("Photo").src = GetPhoto;
+		document.getElementById("button").innerHTML = button;
 	}
 	
-	function Config2()
-{
-	var GetPhoto = "Photos/" + rg + "-2.jpg";
-	var backbutton = "<INPUT TYPE='button' onClick='Config1()' value='Back' class='btn btn-outline-dark' >";
+	function Config2() {
+		var GetPhoto = "Photos/" + rg + "-2.jpg";
+		var backbutton = "<INPUT TYPE='button' onClick='Config1()' value='Back' class='btn btn-outline-dark' >";
 	
-	if (man == "Pace") { 
-	var instructions = "<p>5. Scroll down to Supplementary Network</p><p>6. Select Add Additional Network</p><p>7. In The Router Address Field Enter <b>" + router + "</b></p><p>8. In The Subnet Mask Field Enter <b>" + mask + "</b></p><p>9. Check Auto Firewall Open</p><p>10. Click Save</p>";
-} else if (rg == "599") { 
-	var instructions = "<p>4. Set Public Subnet Mode to On</p><p>5. Set Allow Inbound Traffic to On</p><p>6. In The Public Gateway Address Field Enter <b>" + router + "</b></p><p>7. In The Public Subnet Mask Enter <b>" + mask + "</b></p><p>8. In The DHCPv4 Start Address Field (Under Public Subnet) Enter <b>" + fu + "</b></p><p>9. In The DHCPv4 End Address Field (Under Public Subnet) Enter <b>" + lu + "</b></p><p>10. Set Primary DHCP Pool to Private</p><p>11. Click Save</p>";
-} else if (man == "ARRIS") { 
-	var instructions = "<p>4. Set Public Subnet Enable to On</p><p>5. In The Public IPv4 Address Field Enter <b>" + router + "</b></p><p>6. In The Public Subnet Mask Enter <b>" + mask + "</b></p><p>7. In The DHCPv4 Start Address Field (Under Public Subnet) Enter <b>" + fu + "</b></p><p>8. In The DHCPv4 End Address Field (Under Public Subnet) Enter <b>" + lu + "</b></p><p>9. Set Allow Inbound Traffic To On</p><p>10. Set Primary DHCP Pool to Private</p><p>11. Click Save</p>";
-} else {
-	var instructions = "error";
-}
+		if (man == "Pace") { 
+			var instructions = "<p>5. Scroll down to Supplementary Network</p><p>6. Select Add Additional Network</p><p>7. In The Router Address Field Enter <b>" + router + "</b></p><p>8. In The Subnet Mask Field Enter <b>" + mask + "</b></p><p>9. Check Auto Firewall Open</p><p>10. Click Save</p>";
+		} else if (rg == "599") { 
+			var instructions = "<p>4. Set Public Subnet Mode to On</p><p>5. Set Allow Inbound Traffic to On</p><p>6. In The Public Gateway Address Field Enter <b>" + router + "</b></p><p>7. In The Public Subnet Mask Enter <b>" + mask + "</b></p><p>8. In The DHCPv4 Start Address Field (Under Public Subnet) Enter <b>" + fu + "</b></p><p>9. In The DHCPv4 End Address Field (Under Public Subnet) Enter <b>" + lu + "</b></p><p>10. Set Primary DHCP Pool to Private</p><p>11. Click Save</p>";
+		} else if (man == "ARRIS") { 
+			var instructions = "<p>4. Set Public Subnet Enable to On</p><p>5. In The Public IPv4 Address Field Enter <b>" + router + "</b></p><p>6. In The Public Subnet Mask Enter <b>" + mask + "</b></p><p>7. In The DHCPv4 Start Address Field (Under Public Subnet) Enter <b>" + fu + "</b></p><p>8. In The DHCPv4 End Address Field (Under Public Subnet) Enter <b>" + lu + "</b></p><p>9. Set Allow Inbound Traffic To On</p><p>10. Set Primary DHCP Pool to Private</p><p>11. Click Save</p>";
+		} else {
+			var instructions = "error";
+		}
 
 	var body = instructions + "<br><img id='Photo' src='Photos/none.jpg' alt='' max-width='574' max-height='197' width='100% height='auto' border='0'></p><br><br>The Static IPs should now be configured"
 	document.getElementById("backbutton").innerHTML = backbutton;
 	document.getElementById("body").innerHTML = body;
 	document.getElementById("Photo").src = GetPhoto;
-	
 	}
 	
 <!-- End Static IP Trainer -->
 
 <!-- Get Vars from URL -->
 function getUrlVars() {
-var vars = {};
-var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-vars[key] = value;
-});
-return vars;
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
 }
 
 <!-- End Get Vars from URL -->
 
-<!-- Display Comments Form -->
-
-function Comments() {
-	document.getElementById("attbody").innerHTML = "";
-	document.getElementById("body2").innerHTML = "";
-	document.getElementById("body").innerHTML = "Loading....";
-	var supportform = "The form will load below after a few seconds<br><iframe onload='javascript:parent.scrollTo(0,0);' height='639' allowTransparency='true' frameborder='0' scrolling='yes' style='width:100%;border:none' src='https://forms.justinkumpe.net/embed.php?id=33158&element_6=" + license + "&element_8=" + version + "&element_10=" + auth + "&element_5=" + supportappsource + "&element_4=" + supportdevice + "' title='UVT Comments/Support'><a href='https://forms.justinkumpe.net/view.php?id=33158&element_6=" + license + "&element_8=" + version + "&element_10=" + auth + "&element_5=" + supportappsource + "&element_4=" + supportdevice + "' title='UVT Comments/Support'>UVT Comments/Support</a></iframe>";
-	document.getElementById("body").innerHTML = supportform;
-}
-
-<!-- End Display Comments Form -->
-
 <!-- Start CRT Web -->
 
-function CRT() 
-{
+function CRT() {
 	if (crtblock === "yes") { 
 	window.body = "It appears you are accessing the CRT site from a corporate network. CRT functions have been blocked for your network.  These CRT functions do not operate properly on corporate networks and have not been authorized by your network administrators. If you believe this is in error please use the support link below to request an authorized link for CRT.";
 } else {
@@ -628,8 +486,7 @@ function CRT()
 
 <!-- Start MDM Profiles -->
 
-function MDM() 
-{	
+function MDM() {	
 if (license === "auth-app-store") { 
 	window.body = "This feature is not available in the iOS/Android app.  To access this feature please load the web version of this app at https://kumpe.link/uvt";
 } else {
