@@ -156,7 +156,7 @@ window.onload = function () {
 	window.supportdevice = "6"
 	window.device = getUrlVars()["device"];
 	window.license = getUrlVars()["license"];
-	window.version = "10.1";
+	window.version = "11";
 	window.crtblock = "";
 	deviceLicense();
 	}
@@ -182,14 +182,6 @@ function checkLicense() {
 }
 	<!-- End Check For User Licensing -->
 	
-	<!-- Start Network Detection (Detects if user is on AT&Ts internal network) -->
-	
-	<!-- Enables Licensing for AT&T -->
-	var detectionCounter = 0;
-	var detectionTimeOut = 5;
-	var detectionImage = 'https://webphone.att.com/favicon.ico';
-	var detectionElement = document.createElement('img');
-	detectionElement.src = detectionImage;
 	
 // Outdated Function. No longer requires intranet detection.
 function detectIntranet() {
