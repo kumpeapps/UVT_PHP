@@ -156,7 +156,7 @@ window.onload = function () {
 	window.supportdevice = "6"
 	window.device = getUrlVars()["device"];
 	window.license = getUrlVars()["license"];
-	window.version = "10.0";
+	window.version = "10.1";
 	window.crtblock = "";
 	deviceLicense();
 	}
