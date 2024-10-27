@@ -1,3 +1,6 @@
+Web and mobile versions have been merged into a single multi-platform code. For current code see [UVT](https://github.com/kumpeapps/UVT). The UVT_PHP repo is obsolete and is being archived.
+
+
 # UVT (Web Version)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cbf45b38dab4bfebd055006ce8c574a)](https://app.codacy.com/gh/kumpeapps/UVT_PHP?utm_source=github.com&utm_medium=referral&utm_content=kumpeapps/UVT_PHP&utm_campaign=Badge_Grade_Settings) ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m788773890-8d27aa1fdec17c3c0c489c34?style=plastic) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m788773890-8d27aa1fdec17c3c0c489c34?style=plastic)
